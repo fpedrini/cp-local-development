@@ -1,0 +1,62 @@
+version: '2'
+services:
+  zen:
+    build: ./workspace-zen/cp-zen-platform
+    image: cd-zen:latests
+    ports:
+      - "8000:8000"
+    links:
+      - dojos
+      - events
+      - users
+    expose:
+      - "10301"
+      - "10302"
+      - "10303"
+      - "10304"
+      - "10305"
+      - "10306"
+  dojos:
+    build: ./workspace-zen/cp-dojos-service
+    image: cd-dojos:latests
+    env_file: ./workspace-zen/cp-dojos-service/config/docker.env
+    links:
+      - events
+      - users
+    expose:
+      - "5432"
+      - "10301"
+      - "10302"
+      - "10303"
+      - "10304"
+      - "10305"
+      - "10306"
+  users:
+    build: ./workspace-zen/cp-users-service
+    image: cd-users:latests
+    env_file: ./workspace-zen/cp-users-service/config/docker.env
+    links:
+      - events
+    expose:
+      - "5432"
+      - "10301"
+      - "10302"
+      - "10303"
+      - "10304"
+      - "10305"
+      - "10306"
+  events:
+    build: ./workspace-zen/cp-events-service
+    image: cd-events:latests
+    env_file: ./workspace-zen/cp-events-service/config/docker.env
+    expose:
+      - "5432"
+      - "10301"
+      - "10302"
+      - "10303"
+      - "10304"
+      - "10305"
+      - "10306"
+  db:
+    build: ./cp-db
+    image: cd-postgres:latest
