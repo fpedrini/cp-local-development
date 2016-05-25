@@ -1,4 +1,5 @@
-MAINTAINER nearForm <info@nearform.com>
+FROM mhart/alpine-node:0.10.40
+MAINTAINER butlerx <butlerx@redbrick.dcu.ie.com>
 
 RUN apk add --update  git make gcc g++ python postgresql-client
 
@@ -17,4 +18,4 @@ EXPOSE 8000
 
 RUN apk del make gcc g++ python && rm -rf /tmp/* /root/.npm /root/.node-gyp
 
-CMD ["node", "localdev.js", "run zen"]
+CMD ["node", "localdev.js run zen"]

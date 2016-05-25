@@ -7,7 +7,7 @@ var defaultBranch = 'master';
 var globalEnv = {
   POSTGRES_USERNAME: 'platform',
   POSTGRES_PASSWORD: 'QdYx3D5y',
-  POSTGRES_HOST: 'localhost',
+  POSTGRES_HOST: process.env.POSTGRES_HOST || 'localhost',
   POSTGRES_PORT: 5432,
   MAILTRAP_ENABLED: 'true',
   SALESFORCE_ENABLED: 'false',
